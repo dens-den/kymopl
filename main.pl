@@ -35,21 +35,21 @@ last_vowel(S, X) :-
     vowels(L, V),
     last(V, X).
 
-inflection(S1, S3) :-
+generate_inflection(S1, S3, W) :-
     noun(S1, S2),
     suffix(S2, S3),
     append(NV, S2, S1),
     last_vowel(NV, V1),
     last_vowel(S2, V2),
-    harmony(V1, V2).
+    harmony(V1, V2),
+    atomic_list_concat(S1, '', W).
 
 % Tests
-suffix --> [чу].
-suffix --> [чи].
-suffix --> [чы].
-suffix --> [чү].
+suffix --> [чу]. suffix --> [чи]. suffix --> [чы]. suffix --> [чү]. % occupation
+
 noun --> [кой]. % кой-чу
 noun --> [мерген]. % мерген-чи
 noun --> [балык]. % балык-чы
 noun --> [сүрөт]. % сүрөт-чү
-% inflection(X, []).
+
+% generate_inflection(_, [], W).
