@@ -35,16 +35,10 @@ last_vowel(S, X) :-
     vowels(L, V),
     last(V, X).
 
-% Finding the first [word] in list of variants via first/2: first(?List, ?Word)
-first(L, X) :-
-    last(L, E),
-    select(E, L, X),
-    !.
-
 inflection(S1, S3) :-
     noun(S1, S2),
     suffix(S2, S3),
-    first(S1, NV),
+    append(NV, S2, S1),
     last_vowel(NV, V1),
     last_vowel(S2, V2),
     harmony(V1, V2).
