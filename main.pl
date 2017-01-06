@@ -35,21 +35,67 @@ last_vowel(S, X) :-
     vowels(L, V),
     last(V, X).
 
-generate_inflection(S1, S3, W) :-
-    noun(S1, S2),
-    suffix(S2, S3),
-    append(NV, S2, S1),
-    last_vowel(NV, V1),
-    last_vowel(S2, V2),
-    harmony(V1, V2),
-    atomic_list_concat(S1, '', W).
+generate_inflection(S1, S3) :-
+    noun(S1, Suffix),
+    suffix(Suffix, S3),
+    append(Noun, Suffix, S1),
+    last_vowel(Noun, NounLastVowel),
+    last_vowel(Suffix, SuffixLastVowel),
+    harmony(NounLastVowel, SuffixLastVowel).
+
+generate_inflection(S1, S3, Word) :-
+    generate_inflection(S1, S3),
+    atomic_list_concat(S1, '', Word).
+
+generate_form(W, R) :-
+    convert_word_to_list(W, LW),
+    append(LW, _, X),
+    generate_inflection(X, [], R),
+    !.
+
+convert_word_to_list(W, L) :-
+    last(L, W),
+    !.
+
+%replace_consonant(LW, R, NLW) :-
+%    convert_word_to_list(W, LW),
+%    string_chars(W, X),
+%    nth0(0, X, L).
+    
+
+agreement(г, т, к).
+agreement(г, с, к).
+agreement(г, к, к).
+agreement(г, п, к).
+agreement(г, ч, к).
+agreement(г, ш, к).
+agreement(г, х, к).
+agreement(г, ф, к).
+agreement(г, щ, к).
 
 % Tests
+/*
 suffix --> [чу]. suffix --> [чи]. suffix --> [чы]. suffix --> [чү]. % occupation
-
-noun --> [кой]. % кой-чу
-noun --> [мерген]. % мерген-чи
-noun --> [балык]. % балык-чы
-noun --> [сүрөт]. % сүрөт-чү
+*/
+dative --> [га].
+dative --> [ка].
+dative --> [ге].
+dative --> [ке].
+dative --> [го].
+dative --> [ко].
+dative --> [гө].
+dative --> [кө].
+suffix --> dative.
+%noun --> [кой].
+%noun --> [мерген].
+%noun --> [балык].
+%noun --> [сүрөт].
+%noun --> [аба].
+noun --> [баш].
+%noun --> [кеме].
+noun --> [кол].
+%noun --> [көз].
+%noun --> [туз].
+%noun --> [челек].
 
 % generate_inflection(_, [], W).
