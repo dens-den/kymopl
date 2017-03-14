@@ -11,33 +11,51 @@
 <table>
   <thead>
     <tr>
-      <th rowspan="2" colspan="2"></th>
-      <th colspan="2">передние</th>
-      <th colspan="2">задние</th>
+      <th rowspan="4" colspan="2"></th>
+      <th colspan="4">твёрдые (задние)</th>
+      <th colspan="4">мягкие (передние)</th>
     </tr>
     <tr>
-      <th>неогубл.</th>
-      <th>огубл.</th>
-      <th>неогубл.</th>
-      <th>огубл.</th>
+      <th colspan="2">неогубленные</th>
+      <th colspan="2">огубленные</th>
+      <th colspan="2">неогубленные</th>
+      <th colspan="2">огубленные</th>
+    </tr>
+    <tr>
+      <th>краткие</th>
+      <th>долгие</th>
+      <th>краткие</th>
+      <th>долгие</th>
+      <th>краткие</th>
+      <th>долгие</th>
+      <th>краткие</th>
+      <th>долгие</th>
     </tr>
   </thead>
   <tbody align="center">
     <tr>
-      <th>верхние</th>
-      <th>I</th>
-      <td>и</td>
-      <td>ү</td>
-      <td>ы</td>
-      <td>у</td>
+      <th>широкие (нижние)</th>
+      <th>A</th>
+      <td>а</td>
+      <td>аа</td>
+      <td>о</td>
+      <td>оо</td>
+      <td>э</td>
+      <td>ээ</td>
+      <td>ө</td>
+      <td>өө</td>
     </tr>
     <tr>
-      <th>нижние</th>
-      <th>A</th>
-      <td>э</td>
-      <td>ө</td>
-      <td>а</td>
-      <td>о</td>
+      <th>узкие (верхние)</th>
+      <th>I</th>
+      <td>ы</td>
+      <td>-</td>
+      <td>у</td>
+      <td>уу</td>
+      <td>и</td>
+      <td>-</td>
+      <td>ү</td>
+      <td>үү</td>
     </tr>
   </tbody>
 </table>
