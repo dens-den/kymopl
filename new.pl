@@ -155,6 +155,45 @@ agreement('ө', 'д').
 agreement('ө', 'л').
 agreement('ө', 'н').
 
+vowels([], []).
+vowels([V|T], [V|X]) :-
+    vowel(V),
+    vowels(T, X),
+    !.
+vowels([C|T], X) :-
+    consonant(C),
+    vowels(T, X).
+
+last_vowel(L, X) :-
+    vowels(L, V),
+    last(V, X).
+
+first(L, X) :-
+    L = [X|_].
+
+first_letter(L, X) :-
+    L = [X|_].
+
+last_letter(L, X) :-
+    last(L, X).
+
+listed_word_to_chars(L, X) :-
+    last(L, W),
+    string_chars(W, X),
+    !.
+
+agree(W1, W2) :-
+    listed_word_to_chars(W1, M1),
+    listed_word_to_chars(W2, M2),
+    last_vowel(M1, LV1),
+    last_vowel(M2, LV2),
+    harmony(LV1, LV2),
+    last_letter(M1, LL1),
+    first_letter(M2, FL2),
+    agreement(LL1, FL2),
+    !.
+
+
 % Dictionary
 plural --> ['лар'].
 plural --> ['дар'].
@@ -249,32 +288,29 @@ e3 --> accusative.
 e3 --> locative.
 e3 --> ablative.
 
-
-
-a2 --> e1, e3.
+a2(F, []) :-
+    e1(F, S2),
+    e3(S2, []),
+    append(S1, S2, F),
+    agree(S1, S2).
 
 noun --> ['окучуу'].
 
-final --> noun.
-final --> noun, a2.
+singletons([]) --> [].
+singletons([H|T]) --> [[H]], singletons(T).
+singletons(L, Ls) :- phrase(singletons(L), Ls).
 
-vowels([], []).
-vowels([V|T], [V|X]) :-
-    vowel(V),
-    vowels(T, X),
-    !.
-vowels([C|T], X) :-
-    consonant(C),
-    vowels(T, X).
-last_vowel(S, X) :-
-    last(S, S1),
-    string_chars(S1, L),
-    vowels(L, V),
-    last(V, X).
+%final --> noun.
+final(F, []) :-
+    noun(F, S),
+    a2(S, []),
+    append(N, S, F),
+    singletons(S, C),
+    first(C, S1),
+    agree(N, S1).
 
-last2_2([_,A,_],A,_).
+generate_form(F) :-
+    phrase(final, X),
+    atomics_to_string(X, F).
 
-
-% starts_with_vowel(Word):-
-%   Word = [First|_],
-%   is_vowel(First).
+% generate_form(X).
