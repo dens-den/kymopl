@@ -376,6 +376,44 @@ e3 --> locative.
 e3 --> ablative.
 
 
+% E4 = personal endings
+pr1sg --> ['мын'].
+pr1sg --> ['мин'].
+pr1sg --> ['мун'].
+pr1sg --> ['мүн'].
+pr2sg --> ['сың'].
+pr2sg --> ['сиң'].
+pr2sg --> ['суң'].
+pr2sg --> ['сүң'].
+pr2sgf --> ['сыз'].
+pr2sgf --> ['сиз'].
+pr2sgf --> ['суз'].
+pr2sgf --> ['сүз'].
+pr3sg --> [''].
+pr1pl --> ['быз'].
+pr1pl --> ['биз'].
+pr1pl --> ['буз'].
+pr1pl --> ['бүз'].
+pr2pl --> ['сыңар'].
+pr2pl --> ['сиңер'].
+pr2pl --> ['суңар'].
+pr2pl --> ['сүңөр'].
+pr2plf --> ['сыздар'].
+pr2plf --> ['сиздер'].
+pr2plf --> ['суздар'].
+pr2plf --> ['сүздөр'].
+pr3pl --> [''].
+
+e4 --> pr1sg.
+e4 --> pr2sg.
+e4 --> pr2sgf.
+e4 --> pr3sg.
+e4 --> pr1pl.
+e4 --> pr2pl.
+e4 --> pr2plf.
+e4 --> pr3pl.
+
+
 % RULES
 % A2 = E1 + E3
 a2(F, []) :-
