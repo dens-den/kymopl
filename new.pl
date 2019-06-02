@@ -194,7 +194,7 @@ agree(W1, W2) :-
     !.
 
 
-% Dictionary
+% E1 = plural endings
 plural --> ['лар'].
 plural --> ['дар'].
 plural --> ['тар'].
@@ -208,7 +208,96 @@ plural --> ['лөр'].
 plural --> ['дөр'].
 plural --> ['төр'].
 
-nominative --> [].
+e1 --> plural.
+
+
+% E2 = possessive endings
+p1sg --> ['ым'].
+p1sg --> ['им'].
+p1sg --> ['ум'].
+p1sg --> ['үм'].
+p1sg --> ['м'].
+p2sg --> ['ың'].
+p2sg --> ['иң'].
+p2sg --> ['уң'].
+p2sg --> ['үң'].
+p2sg --> ['ң'].
+p2sgf --> ['ыңыз'].
+p2sgf --> ['иңиз'].
+p2sgf --> ['уңуз'].
+p2sgf --> ['үңүз'].
+p2sgf --> ['ңыз'].
+p2sgf --> ['ңиз'].
+p2sgf --> ['ңуз'].
+p2sgf --> ['ңүз'].
+p3sg --> ['ы'].
+p3sg --> ['и'].
+p3sg --> ['у'].
+p3sg --> ['ү'].
+p3sg --> ['ын'].
+p3sg --> ['ин'].
+p3sg --> ['ун'].
+p3sg --> ['үн'].
+p3sg --> ['сы'].
+p3sg --> ['си'].
+p3sg --> ['су'].
+p3sg --> ['сү'].
+p3sg --> ['сын'].
+p3sg --> ['син'].
+p3sg --> ['сун'].
+p3sg --> ['сүн'].
+p1pl --> ['ыбыз'].
+p1pl --> ['ибиз'].
+p1pl --> ['убуз'].
+p1pl --> ['үбүз'].
+p1pl --> ['быз'].
+p1pl --> ['биз'].
+p1pl --> ['буз'].
+p1pl --> ['бүз'].
+p2pl --> ['ыңар'].
+p2pl --> ['иңер'].
+p2pl --> ['уңар'].
+p2pl --> ['үңөр'].
+p2pl --> ['ңар'].
+p2pl --> ['ңер'].
+p2pl --> ['ңөр'].
+p2plf --> ['ыңыздар'].
+p2plf --> ['иңиздер'].
+p2plf --> ['уңуздар'].
+p2plf --> ['үңүздөр'].
+p2plf --> ['ңыздар'].
+p2plf --> ['ңиздер'].
+p2plf --> ['ңуздар'].
+p2plf --> ['ңүздөр'].
+p3pl --> ['ы'].
+p3pl --> ['и'].
+p3pl --> ['у'].
+p3pl --> ['ү'].
+p3pl --> ['ын'].
+p3pl --> ['ин'].
+p3pl --> ['ун'].
+p3pl --> ['үн'].
+p3pl --> ['сы'].
+p3pl --> ['си'].
+p3pl --> ['су'].
+p3pl --> ['сү'].
+p3pl --> ['сын'].
+p3pl --> ['син'].
+p3pl --> ['сун'].
+p3pl --> ['сүн'].
+
+e2 --> p1sg.
+e2 --> p2sg.
+e2 --> p2sgf.
+e2 --> p3sg.
+e2 --> p1pl.
+e2 --> p2pl.
+e2 --> p2plf.
+e2 --> p3pl.
+
+
+% E3 = case endings
+nominative --> [''].
 
 genitive --> ['нын'].
 genitive --> ['нин'].
@@ -279,8 +368,6 @@ ablative --> ['ен'].
 ablative --> ['он'].
 ablative --> ['өн'].
 
-e1 --> plural.
-
 e3 --> nominative.
 e3 --> genitive.
 e3 --> dative.
@@ -288,14 +375,21 @@ e3 --> accusative.
 e3 --> locative.
 e3 --> ablative.
 
+
+% RULES
+% A2 = E1 + E3
 a2(F, []) :-
     e1(F, S2),
     e3(S2, []),
     append(S1, S2, F),
     agree(S1, S2).
 
+
+% DICTIONARY
 noun --> ['окучуу'].
 
+
+% GENERATOR
 singletons([]) --> [].
 singletons([H|T]) --> [[H]], singletons(T).
 singletons(L, Ls) :- phrase(singletons(L), Ls).
