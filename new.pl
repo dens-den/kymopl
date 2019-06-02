@@ -415,10 +415,45 @@ e4 --> pr3pl.
 
 
 % RULES
+% A1 = E1 + E2
+a1(F, []) :-
+    e1(F, S2),
+    e2(S2, []),
+    append(S1, S2, F),
+    agree(S1, S2).
+
 % A2 = E1 + E3
 a2(F, []) :-
     e1(F, S2),
     e3(S2, []),
+    append(S1, S2, F),
+    agree(S1, S2).
+
+% A3 = E1 + E4
+a3(F, []) :-
+    e1(F, S2),
+    e4(S2, []),
+    append(S1, S2, F),
+    agree(S1, S2).
+
+% A4 = E2 + E3
+a4(F, []) :-
+    e2(F, S2),
+    e3(S2, []),
+    append(S1, S2, F),
+    agree(S1, S2).
+
+% A5 = E2 + E4
+a5(F, []) :-
+    e2(F, S2),
+    e4(S2, []),
+    append(S1, S2, F),
+    agree(S1, S2).
+
+% A6 = E3 + E4
+a6(F, []) :-
+    e3(F, S2),
+    e4(S2, []),
     append(S1, S2, F),
     agree(S1, S2).
 
@@ -435,7 +470,12 @@ singletons(L, Ls) :- phrase(singletons(L), Ls).
 %final --> noun.
 final(F, []) :-
     noun(F, S),
-    a2(S, []),
+    (a1(S, []);
+     a2(S, []);
+     a3(S, []);
+     a4(S, []);
+     a5(S, []);
+     a6(S, [])),
     append(N, S, F),
     singletons(S, C),
     first(C, S1),
